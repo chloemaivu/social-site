@@ -1,0 +1,45 @@
+
+
+
+## needs
+    single page
+    bootstrap interface (?) bootstrap kinda suxxxx so ask about this one
+    consistent navigation structure
+    posts of cards of post content  
+        user name
+        post text 
+        post key
+        icons for likes and downloads
+            can click on like and downloads to increment
+    a page using a form to allow the user to add additional posts
+        requires form elements to allow adding the elements required for cards
+        when posts added user should be notified using toastr (wtf is that?)
+
+    should have the ability to persist in local storage
+
+
+page layout
+
+PLAN
+|
+
+priority
+| INDIVIDUAL POSTS (like counter, uname, image, message) 
+| FEED PAGE 
+| NAVBAR and FOOTER 
+| ADD POST PAGE 
+| CSS AND SASS STYLING (sass!!!!!!)
+| HOME PAGE
+| PROFILE
+| LOG IN / REGISTER
+
+
+
+groups 2
+
+moad
+me
+chloe
+sufian
+laith
+
