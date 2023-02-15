@@ -1,3 +1,8 @@
-#att {
-  font-size: 0.5em;
+.App {
+  text-align: center;
+}
+
+.text-col {
+  margin-left: 5px;
+  color: rgb(139, 221, 107);
 }

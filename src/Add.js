@@ -1,93 +1,105 @@
-import React from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import toastr from 'toastr';
-import 'toastr/build/toastr.min.css'
+import { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Alert from 'react-bootstrap/Alert';
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 
-class Add extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      postId: 0,
-      id: "",
-      text: "",
-      img: "",
+function Add(props) {
+  const [formValues, setFormValues] = useState({
+    id: 0,
+    description: "",
+    completed: false,
+  });
+
+  toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  };
+
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleChange = (event) => {
+    const newState = { ...formValues };
+    console.log(event.target.name)
+    console.log(event.target.value)
+
+    if (event.target.name === "completed") {
+      newState[event.target.name] = !formValues.completed;
+    } else {
+      newState[event.target.name] = event.target.value;
     }
-    toastr.options = {
-      closeButton: true,
-      debug: false,
-      extendedTimeOut: "1000",
-      hideDuration: "1000",
-      hideEasing: "linear",
-      hideMethod: "fadeOut",
-      newestOnTop: false,
-      onclick: null,
-      positionClass: "toast-top-full-width",
-      preventDuplicates: true,
-      progressBar: true,
-      showDuration: "300",
-      showEasing: "swing",
-      showMethod: "fadeIn",
-      timeOut: "5000",
-    };
-    toastr.clear();
+
+    setFormValues(newState);
+  };
+
+  const submitHandler = (event) => {
+    // prevent the submit from changing the url 
+    event.preventDefault()
+    // call the onsubmit function which comes from props
+    props.onSubmit(formValues)
+    // reset the form
+    setFormValues({
+      id: 0,
+      description: "",
+      completed: false,
+    });
+    toastr["success"]("TODO Added!", "Success");
+    setShowAlert(true); // show the alert after form submission
   }
 
-  componentDidMount() {
-    console.log(this.props.lastid)
-    this.setState({
-      postId: this.props.lastid
-    })
-  }
+  return (
+    <div>
+      <Alert variant="success" show={showAlert} onClose={() => setShowAlert(false)} dismissible>
+        Task added!
+      </Alert>
+      <Form onSubmit={(event) => submitHandler(event)}>
+        <Form.Group controlId="taskID">
+          <Form.Label>Task ID</Form.Label>
+          <Form.Control
+            name="id"
+            type="number"
+            onChange={(event) => handleChange(event)}
+          />
+        </Form.Group>
 
-  handleChange(event) {
-    const newState = {};
-    newState[event.target.name] = event.target.value;
-    this.setState(newState);
-  }
+        <Form.Group controlId="taskDescription">
+          <Form.Label> Description</Form.Label>
+          <Form.Control
+            name="description"
+            type="text"
+            onChange={(event) => handleChange(event)}
+          />
+        </Form.Group>
 
-  submitHandler(event) {
-    event.preventDefault();
-    const newId = this.state.postId + 1
-    console.log(newId)
-    this.props.onsubmit(newId, this.state.id, this.state.text, this.state.img, 0);
-    toastr.success("post added");
-    this.setState({
-      postId: newId,
-      id: "",
-      text: "",
-      img: "",
-      likes: 0
-    }, console.log(this.state))
-  }
+        <Form.Group controlId="complete">
+          <Form.Check
+            type="checkbox"
+            id="complete"
+            label="Completed?"
+            name="completed"
+            onChange={(event) => handleChange(event)}
+          />
+        </Form.Group>
 
-
-  render() {
-    return (
-      <>
-        <Form onSubmit={(e) => this.submitHandler(e)} >
-          <Form.Group controlId="userID">
-            <Form.Label>User ID</Form.Label>
-            <Form.Control name="id" type="text" value={this.state.id} onChange={(e) => this.handleChange(e)} />
-          </Form.Group>
-
-          <Form.Group controlId="text">
-            <Form.Label>Text</Form.Label>
-            <Form.Control name="text" type="text" value={this.state.text} placeholder="text" onChange={(e) => this.handleChange(e)} />
-          </Form.Group>
-
-          <Form.Group controlId="img">
-            <Form.Label>Image Address</Form.Label>
-            <Form.Control name="img" type="text" value={this.state.img} placeholder="insert url for image" onChange={(e) => this.handleChange(e)} />
-          </Form.Group>
-
-          <Button variant="primary" type="submit">
-            Add Post
-  </Button>
-        </Form>
-      </>
-    );
-  }
-
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
 }
 export default Add;

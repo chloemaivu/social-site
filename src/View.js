@@ -1,26 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Table from 'react-bootstrap/Table';
 import './App.css';
-import Scard from './Scard';
 
-class View extends React.Component {
-
-  buildPosts() {
-    return this.props.posts.map((current,i) => (
-      <Scard key={i} postId={current.postid} id={current.id} img={current.img} text={current.text} likes={current.likes} likeaction={this.props.likeaction} />
+function View(props) {
+  const buildRows = () => {
+    return props.todos.map((current) => (
+      <tr key={current.id}>
+        <td>
+          {current.id}
+        </td>
+        <td>
+          {current.description}
+        </td>
+        <td>
+          {current.completed ? "yes" : "no"}
+        </td>
+      </tr>
     )
     )
   }
 
-  render() {
-    return (
-      <>
-        <div>
-          {this.buildPosts()}
-        </div>
-        <div id="att">Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></div>
-      </>
-    );
-  }
+
+  return (
+    <>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Task</th>
+            <th>complete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {buildRows()}
+        </tbody>
+      </Table>
+    </>
+  );
+
 }
-
 export default View;
