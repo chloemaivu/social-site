@@ -6,12 +6,11 @@ import "toastr/build/toastr.min.css";
 import { v4 as uuid } from 'uuid';
 
 function AddPost(props) {
+    let currentDate = new Date();
     const [formValues, setFormValues] = useState({
         id: uuid(),
         author: "",
-        //TODO: use current time
-        // date: new Date().now(),
-        date: "15:36 15/02/2023",
+        date: currentDate.toLocaleString(),
         title: "",
         description: ""
     });
@@ -36,25 +35,23 @@ function AddPost(props) {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        props.subbmitedPosts({
+        props.submitedPosts({
             id: uuid(),
-            author: "",
-            //TODO: use current time
-            // date: new Date().now(),
-            date: "15:36 15/02/2023",
-            title: "",
-            description: ""
+            // TODO: change to current user
+            author: "Laith",
+            date: currentDate.toLocaleString(),
+            title: event.target.elements.title.value,
+            description: event.target.elements.description.value,
+            image: event.target.elements.image.value
         });
         // reset the form
         setFormValues({
-            id: 0,
-            //TODO: get current user name
-            author: "Laith",
-            //TODO: use current time
-            // date: new Date().now(),
-            date: "15:36 15/02/2023",
+            id: uuid(),
+            author: "",
+            date: currentDate.toLocaleString(),
             title: "",
-            description: ""
+            description: "",
+            image: ""
         });
         toastr["success"]("Post added!", "Success");
     }
@@ -67,6 +64,7 @@ function AddPost(props) {
                     <Form.Control
                         name="title"
                         type="text"
+                        placeholder="Post title"
                     />
                 </Form.Group>
                 <Form.Group controlId="postDescription">
@@ -74,6 +72,15 @@ function AddPost(props) {
                     <Form.Control
                         name="description"
                         type="text"
+                        placeholder="Post description"
+                    />
+                </Form.Group>
+                <Form.Group controlId="postImage">
+                    <Form.Label>Image</Form.Label>
+                    <Form.Control
+                        name="image"
+                        type="text"
+                        placeholder="Insert URL for image..."
                     />
                 </Form.Group>
                 <Button variant="primary" type="submit">
