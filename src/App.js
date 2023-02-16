@@ -4,21 +4,22 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import { Nav, Navbar } from "react-bootstrap";
 import "./App.css";
-import Post from "./components/Post";
+import Posts from "./components/Posts";
 import AddPost from "./components/AddPost";
+import Post from "./components/Post";
 import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
   const [listItems, setListItems] = useState([]);
   const updateListItems = (todoItem) => {
     // JSON
-    localStorage.setItem("list", JSON.stringify([...listItems, todoItem]));
+    localStorage.setItem("posts", JSON.stringify([...listItems, todoItem]));
 
     setListItems([...listItems, todoItem]);
   };
 
   useEffect(() => {
-    const listContents = localStorage.getItem("list");
+    const listContents = localStorage.getItem("posts");
       setListItems(JSON.parse(listContents) || []);
   }, []);
 
@@ -34,9 +35,11 @@ function App() {
         </Container>
       </Navbar>
       <Routes>
-        <Route exact path="/post" element={<Post todos={listItems} />} />
-        <Route path="/add-post" element={<AddPost subbmitedPosts={(posts) => updateListItems(posts)} />}
-      />
+        {/* TODO: root url? homepage? */}
+        {/* <Route exact path="/" element={/>} /> */}
+        <Route path="/add-post" element={<AddPost submitedPosts={(posts) => updateListItems(posts)} />} />
+        <Route exact path="/posts" element={<Posts todos={listItems} />} />
+        <Route path="/post/:id" element={<Post />} />
       </Routes>
     </Container>
   );
