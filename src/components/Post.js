@@ -3,17 +3,18 @@ import '../App.css';
 import { MDBIcon } from 'mdb-react-ui-kit';
 import { useParams } from "react-router-dom";
 
-function Post() {
-    const { id } = useParams();
-    const post = JSON.parse(localStorage.getItem("posts")).find(
-        (post) => post.id === id
-    );
+function Post(props) {
+    console.log(props);
+    // const { id } = useParams();
+    // const post = JSON.parse(localStorage.getItem("posts")).find(
+    //     (post) => post.id === id
+    // );
 
     return (
         <Card>
-            <div key={post.uuid} className="cardSquare">
-                <Card.Title id="postAuthor">{post.author}</Card.Title>
-                <Card.Img id="postImage" variant="top" src={post.image} />
+            <div key={props.posts.uuid} className="cardSquare">
+                <Card.Title id="postAuthor">{props.posts.author}</Card.Title>
+                <Card.Img id="postImage" variant="top" src={props.posts.image} />
             </div>
             <div>
                 <MDBIcon far icon="comment-alt" />
@@ -21,11 +22,11 @@ function Post() {
                 <MDBIcon far icon="heart" /> <span>Likes number</span>
             </div>
             {/* CSS align to right of image */}
-            <p id="postTitle">{post.title}</p>
+            <p id="postTitle">{props.posts.title}</p>
             <span id="postDescription">
-                {post.description ? post.description : "No description for this post!"}
+                {props.posts.description ? props.posts.description : "No description for this post!"}
             </span>
-            <p id="postDate">{post.date}</p>
+            <p id="postDate">{props.posts.date}</p>
         </Card>
     );
 }
