@@ -1,21 +1,20 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Container from "react-bootstrap/Container";
-import { Nav, Navbar } from "react-bootstrap";
 import "./App.css";
-import Posts from "./components/Posts";
+import Container from "react-bootstrap/Container";
+import NavigationBar from "./components/NavigationBar";
+import Homepage from "./components/Homepage";
 import AddPost from "./components/AddPost";
 import Post from "./components/Post";
-import { Routes, Route, Link } from "react-router-dom";
+import Feed from "./components/Feed";
 
 function App() {
   const [listItems, setListItems] = useState([]);
-  const updateListItems = (todoItem) => {
-    // JSON
-    localStorage.setItem("posts", JSON.stringify([...listItems, todoItem]));
-
-    setListItems([...listItems, todoItem]);
+  const updateListItems = (itemToStore) => {
+    localStorage.setItem("posts", JSON.stringify([...listItems, itemToStore]));
+    setListItems([...listItems, itemToStore]);
   };
 
   useEffect(() => {
@@ -25,21 +24,13 @@ function App() {
 
   return (
     <Container>
-      <Navbar bg="primary" variant="dark">
-        <Container>
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-          <Nav className="me-auto">
-            <Link className="text-col" to="/">Home</Link>
-            <Link className="text-col" to="/add-post">Add Post</Link>
-          </Nav>
-        </Container>
-      </Navbar>
+      <NavigationBar />
       <Routes>
-        {/* TODO: root url? homepage? */}
-        {/* <Route exact path="/" element={/>} /> */}
+        <Route path="/" element={<Homepage posts={listItems} />} />
+        <Route path="/feed" element={<Feed posts={JSON.parse(localStorage.getItem("posts"))} />} />
         <Route path="/add-post" element={<AddPost submitedPosts={(posts) => updateListItems(posts)} />} />
-        <Route exact path="/posts" element={<Posts todos={listItems} />} />
-        <Route path="/post/:id" element={<Post />} />
+        <Route path="/profile" element={"Profile"} />
+        <Route path="/post/:id" element={<Post posts={listItems}/>} />
       </Routes>
     </Container>
   );
