@@ -1,20 +1,16 @@
 import Card from 'react-bootstrap/Card';
 import '../App.css';
 import { MDBIcon } from 'mdb-react-ui-kit';
-import { useParams } from "react-router-dom";
 
 function Post(props) {
-    console.log(props);
-    // const { id } = useParams();
-    // const post = JSON.parse(localStorage.getItem("posts")).find(
-    //     (post) => post.id === id
-    // );
+    const post = props.post;
+    const author = props.author;
 
     return (
         <Card>
-            <div key={props.posts.uuid} className="cardSquare">
-                <Card.Title id="postAuthor">{props.posts.author}</Card.Title>
-                <Card.Img id="postImage" variant="top" src={props.posts.image} />
+            <div key={post.uuid} className="cardSquare">
+                <Card.Title id="postAuthor">{author.name}</Card.Title>
+                <Card.Img id="postImage" variant="top" src={post.image} />
             </div>
             <div>
                 <MDBIcon far icon="comment-alt" />
@@ -22,11 +18,11 @@ function Post(props) {
                 <MDBIcon far icon="heart" /> <span>Likes number</span>
             </div>
             {/* CSS align to right of image */}
-            <p id="postTitle">{props.posts.title}</p>
+            <p id="postTitle">{post.title}</p>
             <span id="postDescription">
-                {props.posts.description ? props.posts.description : "No description for this post!"}
+                {post.description ? post.description : "No description for this post!"}
             </span>
-            <p id="postDate">{props.posts.date}</p>
+            <p id="postDate">{post.date}</p>
         </Card>
     );
 }
