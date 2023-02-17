@@ -18,22 +18,14 @@ function AddPost(props) {
         image: ""
     });
 
-    const authors = JSON.parse(localStorage.getItem("authors"));
-
-    const selectRandomAuthor = () => {
-        const randomIndex = Math.floor(Math.random() * authors.length);
-        return authors[randomIndex];
-    };
-
-    const currentAuthor = selectRandomAuthor();
-
     useEffect(() => {
-        setFormValues({
-            ...formValues,
-            authorId: currentAuthor.id,
-            author: currentAuthor.name
-        });
-    }, [currentAuthor]);
+        const authors = JSON.parse(localStorage.getItem("users"));
+        if (authors && authors.length > 0) {
+            const randomIndex = Math.floor(Math.random() * authors.length);
+            const author = authors[randomIndex];
+            setFormValues({ ...formValues, authorId: author.id, author: author.username });
+        }
+    }, []);
 
     toastr.options = {
         "closeButton": false,
@@ -55,10 +47,10 @@ function AddPost(props) {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        props.submitedPosts({
+        props.submittedPosts({
             id: uuid(),
-            authorId: currentAuthor.id,
-            author: currentAuthor.name,
+            authorId: formValues.authorId,
+            author: formValues.author,
             date: currentDate.toLocaleString(),
             title: event.target.elements.title.value,
             description: event.target.elements.description.value,
