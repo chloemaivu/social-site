@@ -8,8 +8,8 @@ function Post(props) {
 
     return (
         <Card>
-            <div key={post.uuid} className="cardSquare">
-                <Card.Title id="postAuthor">{author.name}</Card.Title>
+            <div key={post.id} className="cardSquare">
+                <Card.Title id="postAuthor">{author.username}</Card.Title>
                 <Card.Img id="postImage" variant="top" src={post.image} />
             </div>
             <div>

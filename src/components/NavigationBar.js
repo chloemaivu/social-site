@@ -14,8 +14,8 @@ function NavigationBar() {
                         <Link to="/feed">Feed</Link>
                         <Link to="/add-post">Add</Link>
                         <Link to="/profile">Profile</Link>
-                        <Link to="/login">Log In</Link>
-                        <Link to="/register">Register</Link>
+                        <Link to="/">Log In</Link>
+                        <Link to="/">Register</Link>
                     </Nav>
                 </Container>
             </Navbar>
