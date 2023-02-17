@@ -10,6 +10,7 @@ import AddPost from "./components/AddPost";
 import Post from "./components/Post";
 import Feed from "./components/Feed";
 import Footer from "./components/Footer"
+import Profile from "./components/Profile"
 import { faker } from '@faker-js/faker';
 
 function App() {
@@ -69,7 +70,7 @@ function App() {
         <Route path="/" element={<Homepage posts={posts} users={users} />} />
         <Route path="/feed" element={<Feed posts={posts} users={users} />} />
         <Route path="/add-post" element={<AddPost submittedPosts={(posts) => updatePosts(posts)} />} />
-        <Route path="/profile" element={"Profile"} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/post/:id" element={<Post posts={posts} />} />
       </Routes>
       <Footer />
