@@ -12,7 +12,7 @@ function Feed(props) {
     const renderedPosts = posts.map((post) => {
         const author = users.find((user) => user.id === post.authorId);
         return (
-            <Col key={post.uuid} lg={8}>
+            <Col key={post.id} lg={8}>
                 <Post post={post} author={author} />
             </Col>
         );
