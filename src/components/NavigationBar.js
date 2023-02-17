@@ -8,7 +8,7 @@ function NavigationBar() {
         <>
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand href="#home">LOGO</Navbar.Brand>
+                    <Navbar.Brand>😇ANGELFACE😇</Navbar.Brand>
                     <Nav className="me-auto">
                         <Link to="/">Home</Link>
                         <Link to="/feed">Feed</Link>

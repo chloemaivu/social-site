@@ -14,21 +14,21 @@ function Homepage(props) {
         const author = users.find((user) => user.id === post.authorId);
         return (
             <Col key={post.id} xs={12} md={4} lg={2}>
-                <Card>
-                    <div className="cardSquare">
-                        <Card.Img id="postImage" variant="top" src={post.image} />
-                    </div>
-                    <div>
-                        <Row>
-                            <Col lg={6}>
-                                <Card.Title id="postAuthor">{author.username}</Card.Title>
-                            </Col>
-                            <Col lg={6}>
-                                <MDBIcon far icon="heart" /> <span></span>
-                            </Col>
-                        </Row>
-                    </div>
-                </Card>
+                    <Card>
+                        <div className="cardSquare">
+                            <Card.Img id="postImage" variant="top" src={post.image} />
+                        </div>
+                        <div>
+                            <Row>
+                                <Col lg={6}>
+                                    <Card.Title id="postAuthor">{author.username}</Card.Title>
+                                </Col>
+                                <Col lg={6}>
+                                    <MDBIcon far icon="heart" /> <span></span>
+                                </Col>
+                            </Row>
+                        </div>
+                    </Card>
             </Col>
         );
     });

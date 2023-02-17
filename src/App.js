@@ -9,6 +9,7 @@ import Homepage from "./components/Homepage";
 import AddPost from "./components/AddPost";
 import Post from "./components/Post";
 import Feed from "./components/Feed";
+import Footer from "./components/Footer"
 import { faker } from '@faker-js/faker';
 
 function App() {
@@ -62,7 +63,7 @@ function App() {
   }, [users]);
 
   return (
-    <Container>
+    <Container className="cont">
       <NavigationBar />
       <Routes>
         <Route path="/" element={<Homepage posts={posts} users={users} />} />
@@ -71,6 +72,7 @@ function App() {
         <Route path="/profile" element={"Profile"} />
         <Route path="/post/:id" element={<Post posts={posts} />} />
       </Routes>
+      <Footer />
     </Container>
   );
 }

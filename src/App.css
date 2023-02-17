@@ -7,32 +7,64 @@
   /* color: rgb(139, 221, 107); */
 }
 
-/* ////////////////////////////////// VAR \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+/* ////////////////////////////////// VARS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 
 :root {
-  --element-bg: #36213E;
-  --page-bg: #554971;
-  --text: #63768D;
-  --text-bright: #84a1c5;
-  --text-dark: #170E1B;
-  --body-bg: linear-gradient(115deg, rgb(222,218,231), rgb(154,144,182));
+  /* --element-bg: #36213E; */
+  --element-bg: #3d4246;
+  /* --page-bg: #554971; */
+  --page-bg: rgba(224, 212, 105, 0.5);
+  /* --text: #63768D; */
+  --text: #f7eda0;
+  /* --text-bright: #84a1c5; */
+  --text-bright: #E0b818;
+  /* --text-dark: #170E1B; */
+  --text-dark: #7a754c;
+  /* --body-bg: linear-gradient(115deg, rgb(222, 218, 231), rgb(154, 144, 182)); */
+  --body-bg: #1a1a1a;
 
-  --border-bright: 2px solid var(--text-bright);
+  --border-bright: 2px solid var(--text);
 
-  margin: 0%;
+  --drop: drop-shadow(0 0 0.5rem white);
 }
 
-/* ////////////////////////////////// NAVBAR \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+/* ////////////////////////////////// CONTAINERS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 body {
-  background-image: var(--body-bg);
+  background-color: var(--body-bg);
+  background-image: url(angel-wings_25op.png);
+  background-position: center;
   background-repeat: no-repeat;
+}
+
+.cont {
+  min-height: 76vh;
+  min-width: 90vw;
 
 }
 
+.bigcenter {
+  margin-left: 2%;
+  margin-right: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center {
+  max-width: 90%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.compact {
+  line-height: 33%;
+}
+/* ////////////////////////////////// TEXT \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 p,
 li,
 span,
-td {
+td,
+a {
   color: var(--text);
 }
 
@@ -41,28 +73,48 @@ h2,
 h3,
 h4,
 h5,
+h6,
 .navbar-brand,
 th,
-.form-label {
+.form-label,
+.card-title {
   color: var(--text-bright);
+  font-family: monospace;
+  text-transform: uppercase;
 }
 
 a {
   padding: 10px !important;
+
 }
 
 a:hover {
   color: var(--text-bright);
 }
 
-
-Nav,
+/* ////////////////////////////////// BARS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+.navbar,
 footer {
-  width: 100% !important;
-  top: absolute !important;
   background-color: var(--element-bg) !important;
   color: var(--bold-text) !important;
-  gap: 10% !important;
+  justify-self: center !important;
+}
+
+.navbar {
+  top:0px;
+  border-bottom-left-radius: 2em !important;
+  border-bottom-right-radius: 2em !important;
+}
+
+.footer {
+  bottom: 0px;
+  border-top-left-radius: 2em;
+  border-top-right-radius: 2em;
+}
+
+.footer-base {
+  background-color: rgba(0,0,0,.5);
+  color: var(--text);
 }
 
 .p-4,
@@ -70,42 +122,66 @@ footer {
   background-color: var(--element-bg) !important;
 }
 
+/* ////////////////////////////////// CARDS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+
 .cardSquare {
   background: none;
 }
 
 .card {
   background-color: var(--page-bg);
-  padding: 1%;
+  margin-bottom: 2vh;
+}
+
+.card-img-top {
+  object-fit: cover;
+  height: 30vh;
+  transition: all 0.15s ease;
+  filter: saturate(0.6)
+}
+
+.card-img-top:hover {
+  filter: brightness(1.5);
+  filter: saturate(1);
+  transform: scale(1.15);
+  filter: var(--drop);
 }
 
 img {
-  max-width: 30%;
-  max-height: 30%;
   border: var(--border-bright);
   border-radius: 0.5em;
 }
 
+/* ////////////////////////////////// FORM \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+
 .form-control {
-  background: #36213E;
+  color: var(--text);
+  background: none;
   border: var(--border-bright);
-  width: 40%;
-  justify-self:center;
+  margin-bottom: 2%;
+  min-width: 80%;
 }
+
+
+.form-control:focus {
+  color: var(--text);
+  background: none;
+  border: var(--border-bright);
+  filter: var(--drop);
+
+}
+
+/* ////////////////////////////////// BUTTON \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 
 .btn {
   background-color: var(--text) !important;
-  color: var(--element-bg) !important; 
+  color: var(--element-bg) !important;
   border: var(--border-bright) !important;
-  margin: 1%;
 }
 
 .btn:hover {
   background-color: var(--text-bright) !important;
-  color:var(--element-bg) !important;
+  color: var(--element-bg) !important;
   border: var(--border-bright) !important;
-}
-
-.pagebox {
-  justify-content: center;
+  filter: var(--drop) !important;
 }
