@@ -1,5 +1,6 @@
 import React from 'react';
-import Table from 'react-bootstrap/Table'
+import Table from 'react-bootstrap/Table';
+import { MDBIcon } from 'mdb-react-ui-kit';
 
 class Likes extends React.Component {
 

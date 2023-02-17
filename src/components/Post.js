@@ -1,5 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import '../App.css';
+import Likes from './Likes'
 import { MDBIcon } from 'mdb-react-ui-kit';
 
 function Post(props) {
@@ -15,7 +16,8 @@ function Post(props) {
             <div>
                 <MDBIcon far icon="comment-alt" />
                 <MDBIcon far icon="share-square" />
-                <MDBIcon far icon="heart" /> <span>Likes number</span>
+                {/* <MDBIcon far icon="heart" /> <span>Likes number</span> */}
+                <Likes no={this.props.likes} likeaction={this.props.likeaction} postId={this.props.postId} />
             </div>
             {/* CSS align to right of image */}
             <p id="postTitle">{post.title}</p>
