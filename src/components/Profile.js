@@ -9,7 +9,7 @@ function Profile() {
 
     return (
         <Container>
-            <Avatar src={randomUser.image} />
+            <Avatar className='pfp' src={randomUser.image} />
             <p><b>Date joined: </b> {randomUser.dateJoined}</p>
             <Button variant="primary" type="Change PFP">
                 Change PFP

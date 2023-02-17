@@ -185,3 +185,12 @@ img {
   border: var(--border-bright) !important;
   filter: var(--drop) !important;
 }
+
+/* ////////////////////////////////// pfp \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+
+.pfp {
+  border: var(--border-bright);
+  border-radius: 5em !important;
+  height: 300px !important;
+  width: 300px !important;
+}
