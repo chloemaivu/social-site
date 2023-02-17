@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import toastr from "toastr";
@@ -9,11 +10,30 @@ function AddPost(props) {
     let currentDate = new Date();
     const [formValues, setFormValues] = useState({
         id: uuid(),
+        authorId: "",
         author: "",
         date: currentDate.toLocaleString(),
         title: "",
-        description: ""
+        description: "",
+        image: ""
     });
+
+    const authors = JSON.parse(localStorage.getItem("authors"));
+
+    const selectRandomAuthor = () => {
+        const randomIndex = Math.floor(Math.random() * authors.length);
+        return authors[randomIndex];
+    };
+
+    const currentAuthor = selectRandomAuthor();
+
+    useEffect(() => {
+        setFormValues({
+            ...formValues,
+            authorId: currentAuthor.id,
+            author: currentAuthor.name
+        });
+    }, [currentAuthor]);
 
     toastr.options = {
         "closeButton": false,
@@ -37,8 +57,8 @@ function AddPost(props) {
         event.preventDefault();
         props.submitedPosts({
             id: uuid(),
-            // TODO: change to current user
-            author: "Laith",
+            authorId: currentAuthor.id,
+            author: currentAuthor.name,
             date: currentDate.toLocaleString(),
             title: event.target.elements.title.value,
             description: event.target.elements.description.value,
@@ -47,6 +67,7 @@ function AddPost(props) {
         // reset the form
         setFormValues({
             id: uuid(),
+            authorId: "",
             author: "",
             date: currentDate.toLocaleString(),
             title: "",
