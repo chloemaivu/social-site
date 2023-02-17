@@ -4,5 +4,108 @@
 
 .text-col {
   margin-left: 5px;
-  color: rgb(139, 221, 107);
+  /* color: rgb(139, 221, 107); */
+}
+
+/* ////////////////////////////////// VAR \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+
+:root {
+  --element-bg: #36213E;
+  --page-bg: #554971;
+  --text: #63768D;
+  --text-bright: #84a1c5;
+  --text-dark: #170E1B;
+  --body-bg: linear-gradient(115deg, rgb(222,218,231), rgb(154,144,182));
+
+  --border-bright: 2px solid var(--text-bright);
+
+  margin: 0%;
+}
+
+/* ////////////////////////////////// NAVBAR \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+body {
+  background-image: var(--body-bg);
+  background-repeat: no-repeat;
+
+}
+
+p,
+li,
+span,
+td {
+  color: var(--text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+.navbar-brand,
+th,
+.form-label {
+  color: var(--text-bright);
+}
+
+a {
+  padding: 10px !important;
+}
+
+a:hover {
+  color: var(--text-bright);
+}
+
+
+Nav,
+footer {
+  width: 100% !important;
+  top: absolute !important;
+  background-color: var(--element-bg) !important;
+  color: var(--bold-text) !important;
+  gap: 10% !important;
+}
+
+.p-4,
+.p-3 {
+  background-color: var(--element-bg) !important;
+}
+
+.cardSquare {
+  background: none;
+}
+
+.card {
+  background-color: var(--page-bg);
+  padding: 1%;
+}
+
+img {
+  max-width: 30%;
+  max-height: 30%;
+  border: var(--border-bright);
+  border-radius: 0.5em;
+}
+
+.form-control {
+  background: #36213E;
+  border: var(--border-bright);
+  width: 40%;
+  justify-self:center;
+}
+
+.btn {
+  background-color: var(--text) !important;
+  color: var(--element-bg) !important; 
+  border: var(--border-bright) !important;
+  margin: 1%;
+}
+
+.btn:hover {
+  background-color: var(--text-bright) !important;
+  color:var(--element-bg) !important;
+  border: var(--border-bright) !important;
+}
+
+.pagebox {
+  justify-content: center;
 }
