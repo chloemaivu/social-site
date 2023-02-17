@@ -47,7 +47,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Generate 12 fake posts
     const fakePosts = users.map((user) => {
       return [...Array(3)].map(() => ({
         id: uuidv4(),
@@ -68,7 +67,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage posts={posts} users={users} />} />
         <Route path="/feed" element={<Feed posts={posts} users={users} />} />
-        <Route path="/add-post" element={<AddPost submitedPosts={(posts) => updatePosts(posts)} />} />
+        <Route path="/add-post" element={<AddPost submittedPosts={(posts) => updatePosts(posts)} />} />
         <Route path="/profile" element={"Profile"} />
         <Route path="/post/:id" element={<Post posts={posts} />} />
       </Routes>
